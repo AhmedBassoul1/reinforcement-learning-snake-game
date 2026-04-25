@@ -21,7 +21,7 @@ class Agent:
         self.gamma = 0
         self.memory = deque(maxlen=MAX_MEMORY)
 
-        
+
 
     def get_state(self, game):
         pass
@@ -32,14 +32,41 @@ class Agent:
     def train_long_mermory(self):
         pass
 
-    def train_short_memory(self):
+    def train_short_memory(self, state_old, final_move, reward, state_new, done):
         pass
 
     def get_action(self, state):
         pass
 
 def train():
-    pass
+    plot_scores = 0
+    plot_mean_scores = 0
+    total_score = 0
+    record = 0
+    agent = Agent()
+    game = SnakeGame()
+    while True:
+        state_old = agent.get_state(game)
+        final_move = agent.get_action(state=state_old)
+        reward, done, score = game.play_step(final_move)
+        state_new = agent.get_state(game)
+
+        agent.train_short_memory(state_old, final_move, reward, state_new, done)
+        agent.remember(state_old, final_move, reward, state_new, done)
+
+        if done:
+            game.reset()
+            agent.n_games += 1
+            agent.train_long_mermory()
+
+            if score > record:
+                record = score
+                #agent.model.save()
+
+            print('Game', agent.n_games, 'Score', score, 'Record:', record)
+
+        
+
 
 
 if __name__== "__main__":
