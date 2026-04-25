@@ -50,7 +50,7 @@ snake-game-RL/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/<your-username>/snake-game-RL.git
+git clone https://github.com/AhmedBassoul1/reinforcement-learning-snake-game.git
 cd snake-game-RL
 ```
 
