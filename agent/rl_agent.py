@@ -21,8 +21,6 @@ class Agent:
         self.gamma = 0
         self.memory = deque(maxlen=MAX_MEMORY)
 
-
-
     def get_state(self, game):
         pass
 
